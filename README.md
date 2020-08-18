@@ -1,0 +1,2 @@
+# mediawiki
+Media Wiki Deployment
