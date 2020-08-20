@@ -1,0 +1,13 @@
+{
+    "name": "media_wiki",
+    "description": "Installs and Configues mediaWiki",
+    "json_class": "Chef::Role",
+    "default_attribues": {},
+    "override_attribues": {},
+    "chef_type": "role",
+
+    "run_list":[
+        "recipe[media_wiki::dependency_install]",
+        "recipe[media_wiki::install_app]"
+    ]
+}
