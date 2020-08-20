@@ -1,5 +1,6 @@
 ## Mediawiki
-<p>This repo contains Terraform scripts and Chef recipes to install and run MediaWiki on AWS. As part of cloud infrastructure the following resources are created EC2, ELB, ASG, LC.</p>
+<p>This repo contains Terraform scripts and Chef recipes to install and run MediaWiki on AWS. As part of cloud infrastructure the following resources are created EC2, ELB, ASG, LC and follows Blue/Green deployment</p>
+
 
 
 #### Tools and Services Used:
@@ -8,10 +9,12 @@
   3. Configuration management: Chef
 
 
+
 ### Pre-requisite:
   1. AWS account
   2. Creation of S3 bucket to store statefile, IAM role for EC2, SG's for EC2, ELB, RDS.
   3. Terraform installation v0.12.2
+
 
 
 ### Deployment procedure:
@@ -44,9 +47,12 @@
       <i>Note:</i> To teardown the stack run the above commands with <b>keep</b> parameter value to <b>0</b>
    
    5. EC2's userdata installs Chef and runs the recipes to install mediawiki and start the apache.
-        <i>Click [here](https://github.com/antonyRepo/mediawiki/tree/master/chef_config_mng) for Chef cookbooks <br> 
+        <i>Click [here](https://github.com/antonyRepo/mediawiki/tree/master/chef_config_mng) for Chef cookbooks </i> 
+  
+
 
 ### Scaling:
+
 
 ### Future Enhancements:
   1. Creation of Weighted Route53 for switching traffic between Blue and Green stack.
