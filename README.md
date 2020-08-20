@@ -1,21 +1,25 @@
-# Mediawiki
+## Mediawiki
+<p>This repo contains Terraform scripts and Chef recipes to install and run MediaWiki on AWS. As part of cloud infrastructure the following resources are created EC2, ELB, ASG, LC.</p>
 
-### Tools and Services Used:
+
+#### Tools and Services Used:
   1. Cloud Deployment: AWS
   2. Infrastructure automation: Terraform
   3. Configuration management: Chef
 
+
 ### Pre-requisite:
   1. AWS account
-  2. Creation of S3 bucket to store statefile, IAM role for EC2, SG's for EC2 and ELB
+  2. Creation of S3 bucket to store statefile, IAM role for EC2, SG's for EC2, ELB, RDS.
   3. Terraform installation v0.12.2
 
+
 ### Deployment procedure:
-  1. Find the screenshots of S3, IAM and SG's here.
+  1. Find the screenshots of S3, IAM and SG's [here](https://github.com/antonyRepo/mediawiki/tree/master/screenshots/pre_requisite).
   
   2. RDS creation: Run the below commands to create the DB instance. <br>
-         <i>Click here for Terraform scripts <br> 
-         Click here for screenshots</i>
+         <i>Click [here](https://github.com/antonyRepo/mediawiki/tree/master/aws_infra/rds) for Terraform scripts <br> 
+         Click [here](https://github.com/antonyRepo/mediawiki/tree/master/screenshots/rds) for screenshots</i>
   
           export AWS_ACCESS_KEY_ID=****************
           export AWS_SECRET_ACCESS_KEY=**********************
@@ -24,11 +28,11 @@
           terraform plan -var "username=root" -var "password=****" -out=plan.out
           terraform apply plan.out
   
-  3. Follow the doc to create a <i>wiki<i> user on the DB.
+  3. Follow the [doc](https://www.mediawiki.org/wiki/Manual:Running_MediaWiki_on_Red_Hat_Linux) to create a <i>wiki</i> user on the DB.
   
   4. Frontend creation: Run the below commands to bring up the stack. <br> 
-        <i>Click here for Terraform scripts <br> 
-         Click here for screenshots</i>
+        <i>Click [here](https://github.com/antonyRepo/mediawiki/tree/master/aws_infra/frontend) for Terraform scripts <br> 
+         Click [here](https://github.com/antonyRepo/mediawiki/tree/master/screenshots/frontend) for screenshots</i>
          
           export AWS_ACCESS_KEY_ID=****************
           export AWS_SECRET_ACCESS_KEY=**********************
@@ -40,7 +44,7 @@
       <i>Note:</i> To teardown the stack run the above commands with <b>keep</b> parameter value to <b>0</b>
    
    5. EC2's userdata installs Chef and runs the recipes to install mediawiki and start the apache.
-        <i>Click here for Chef cookbooks <br> 
+        <i>Click [here](https://github.com/antonyRepo/mediawiki/tree/master/chef_config_mng) for Chef cookbooks <br> 
 
 ### Scaling:
 
