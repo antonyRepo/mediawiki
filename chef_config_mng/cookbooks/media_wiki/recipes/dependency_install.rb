@@ -1,5 +1,10 @@
+# Downloads and installs all dependent packages
+# Reads the media wiki code version to be donwloaded and installed
+
 packages_to_install = node['media_wiki']['package_list'] 
 wiki_version = '/tmp/release.json'
+
+include_recipe 'media_wiki::download_app'
 
 packages_to_install.each do |pckg|
     package pckg do
@@ -17,22 +22,3 @@ ruby_block 'get_release_version' do
     action :run
     notifies :run, 'bash[download_app]', :immediate
 end
-
-ruby_block "get_public_hostname" do
-    block do
-        Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)      
-        command = 'cat /tmp/hostname'
-        command_out = shell_out(command)
-        node.force_default['media_wiki']['public_hostname']  = command_out.stdout
-    end
-    action :create
-    notifies :create, 'template[/var/www/mediawiki/LocalSettings.php]', :immediate
-end
-
-template '/var/www/mediawiki/LocalSettings.php' do
-    source 'LocalSettings.php.erb'
-    mode '0750'
-    owner 'root'
-    group 'root'
-    variables(wgserver: node['media_wiki']['public_hostname'])
-  end

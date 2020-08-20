@@ -1,3 +1,6 @@
+# Downloads the media wiki tar ball
+# Extracts and installs the package at /var/www/
+
 root_path = node['media_wiki']['root_path']
 media_wiki_version = node['media_wiki']['media_wiki_version'] 
 
@@ -11,11 +14,3 @@ bash 'download_app' do
     EOH
     action :nothing
 end
-
-template '/etc/httpd/conf/httpd.conf' do
-   source 'httpd.conf.erb'
-   owner 'root'
-   group 'root'
-   mode '0755'
-end
-
