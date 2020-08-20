@@ -8,6 +8,6 @@
 
     "run_list":[
         "recipe[media_wiki::dependency_install]",
-        "recipe[media_wiki::install_app]"
+        "recipe[media_wiki::httpd_start]"
     ]
 }
