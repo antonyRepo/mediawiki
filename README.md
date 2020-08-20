@@ -52,6 +52,7 @@
 
 
 ### Scaling:
+<p>To handle scaling, application is deployed on EC2's managed by Auto scaling group. ASG adds an instance to the fleet of instances if the CPU utilization breaches the threshold of 70%. To support image and media files upload which requires persistent storage, Amazon S3 or EFS can be used. Currently we may loose the instance storage during scaling activity. </p>
 
 
 ### Future Enhancements:
