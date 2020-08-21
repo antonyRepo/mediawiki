@@ -8,12 +8,12 @@
     4. Adds the LocalSettings.php.
     5. Starts httpd.
 
-2. [frontend](https://github.com/antonyRepo/mediawiki/tree/master/frontend): Terraform scripts to spin up AWS infrastructure
+2. [frontend](https://github.com/antonyRepo/mediawiki/tree/master/aws_infra/frontend/environment): Terraform scripts to spin up AWS infrastructure
     1. The following resources are created as part of the infrasructure: <i>EC2, Load Balancer, AutoScaling, Launch Configuration, CLoudwatch alarm.</i>
     2. After provisioning, the EC2 userdata downloads the above Chef cookbooks to install media wiki.
     3. Follows blue green deployment pattern.
 
-3. [rds](https://github.com/antonyRepo/mediawiki/tree/master/frontend): Terraform scripts to create AWS RDS instance.
+3. [rds](https://github.com/antonyRepo/mediawiki/tree/master/aws_infra/rds): Terraform scripts to create AWS RDS instance.
     1. DB used to store wiki pages.
     2. The frontend communicates with the AWS rds used for persistent storage. 
 
@@ -34,7 +34,7 @@
 
 ### Deployment procedure:
   
-  1. RDS creation: After cloning the repo, go under "rds/variables.tf" and edit the variables.tf file associating parameters to your AWS account and run the below commands to create an RDS instance. <br>
+  1. RDS creation: After cloning the repo, go under "aws_infra/rds/variables.tf" and edit the variables.tf file associating parameters to your AWS account and run the below commands to create an RDS instance. <br>
      Have the access and secret key handy generated as part of pre-requisite which has to be exported before running terraform scripts.
          <i>Click [here](https://github.com/antonyRepo/mediawiki/tree/master/screenshots/rds) for screenshots</i>
   
@@ -48,7 +48,7 @@
   
   2. Follow the [doc](https://www.mediawiki.org/wiki/Manual:Running_MediaWiki_on_Red_Hat_Linux) to create a <i>wiki</i> user on the DB and grant necessary permission.
   
-  3. Frontend creation: Once the RDS instance is created, we can bring up frontend to deploy media wiki on EC2 instance. Go under "frontend/constants/variables.tf" and update the variable parameters according to your AWS account eg: Subnets, SG's etc. Run the below commands to bring up the stack. <br> 
+  3. Frontend creation: Once the RDS instance is created, we can bring up frontend to deploy media wiki on EC2 instance. Go under "aws_infra/frontend/constants/variables.tf" and update the variable parameters according to your AWS account eg: Subnets, SG's etc. Run the below commands to bring up the stack. <br> 
         <i>Click [here](https://github.com/antonyRepo/mediawiki/tree/master/screenshots/frontend) for screenshots</i>
          
           cd frontend/environment/
